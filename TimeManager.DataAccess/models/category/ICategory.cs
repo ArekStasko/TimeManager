@@ -8,7 +8,6 @@ namespace TimeManager.DataAccess.models.category
 {
     public interface ICategory
     {
-        public string Name { get; set; }
         
     }
 }

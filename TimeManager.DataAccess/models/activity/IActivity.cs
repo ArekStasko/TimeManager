@@ -8,6 +8,6 @@ namespace TimeManager.DataAccess.models.activity
 {
     public interface IActivity
     {
-        public string Name { get; set; }
+
     }
 }

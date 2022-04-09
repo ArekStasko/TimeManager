@@ -8,5 +8,6 @@ namespace TimeManager.DataAccess.models.category
 {
     public class Category : ICategory
     {
+
     }
 }
