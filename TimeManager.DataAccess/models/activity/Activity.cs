@@ -8,6 +8,9 @@ namespace TimeManager.DataAccess.models.activity
 {
     public class Activity : IActivity
     {
-
+        public int Id { get; set; }
+        public string ActName { get; set; }
+        public string ActDesc { get; set; }
+        public string Category { get; set; }
     }
 }
