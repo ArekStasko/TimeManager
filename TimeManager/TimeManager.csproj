@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TimeManager.Controllers\TimeManager.Controllers.csproj" />
-    <ProjectReference Include="..\TimeManager.DataAccess\TimeManager.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>
