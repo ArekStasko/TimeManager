@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="08dce1d8ae464b98b9894e25219ed79b" Name="Diagram1">
-        <EntityTypeShape EntityType="TimeManagerModel.Activity" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeManagerModel.Activity" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

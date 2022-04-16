@@ -91,6 +91,10 @@
       <DependentUpon>Category.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="services\ActivityServices\ActivityServices.cs" />
+    <Compile Include="services\ActivityServices\IActivityServices.cs" />
+    <Compile Include="services\CategoryServices\CategoryServices.cs" />
+    <Compile Include="services\CategoryServices\ICategoryServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
