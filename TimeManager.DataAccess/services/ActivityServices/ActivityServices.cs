@@ -9,7 +9,6 @@ namespace TimeManager.DataAccess.services.ActivityServices
 {
     public class ActivityServices : IActivityServices
     {
-        private Activity db = new Activity();
 
         public IEnumerable<Activity> GetActivities()
         {
