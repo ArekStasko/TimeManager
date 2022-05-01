@@ -19,9 +19,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\Activity\" />
-    <Folder Include="Data\Category\" />
-  </ItemGroup>
-
 </Project>
