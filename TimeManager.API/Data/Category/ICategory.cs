@@ -2,6 +2,7 @@
 {
     public interface ICategory
     {
-        public string CatName { get; }
+        public int Id { get; set; }
+        public string CatName { get; set; }
     }
 }

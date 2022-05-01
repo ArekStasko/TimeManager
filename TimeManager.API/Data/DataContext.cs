@@ -7,6 +7,6 @@ namespace TimeManager.API.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Activity> Activities { get; set; }
-        
+        public DbSet<Category> Categories { get; set; }
     }
 }

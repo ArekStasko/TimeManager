@@ -1,10 +1,13 @@
-﻿namespace TimeManager.API.Data
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TimeManager.API.Data
 {
     public class Activity : IActivity
     {
-        public int Id { get; }
-        public string ActName { get; }
-        public string ActDesc { get; }
-        public string Category { get; }
+        [Key]
+        public int Id { get; set; }
+        public string ActName { get; set; }
+        public string ActDesc { get; set; }
+        public string Category { get; set; }
     }
 }

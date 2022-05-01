@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
-namespace TimeManager.API.Controllers.Activity
+namespace TimeManager.API.Controllers.ActivityControllers
 {
-    public class ActivityController : Controller, IActivityController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ActivityController : ControllerBase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }

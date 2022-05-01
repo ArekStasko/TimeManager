@@ -1,7 +1,11 @@
-﻿namespace TimeManager.API.Data
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TimeManager.API.Data
 {
     public class Category : ICategory
     {
-        public string CatName { get; }
+        [Key]
+        public int Id { get; set; }
+        public string CatName { get; set; }
     }
 }

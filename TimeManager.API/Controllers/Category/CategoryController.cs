@@ -1,12 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TimeManager.API.Data;
 
-namespace TimeManager.API.Controllers.Category
+namespace TimeManager.API.Controllers.CategoryControllers
 {
-    public class CategoryController : Controller, ICategoryController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CategoryController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly DataContext _context;
+        public CategoryController(DataContext context)
         {
-            return View();
+            _context = context;
+        }
+
+        [HttpGet(Name = "GetCategories")]
+        public async Task<ActionResult<List<ICategory>>> Get()
+        {
+            return Ok(await _context.Categories.ToListAsync());
         }
     }
 }
