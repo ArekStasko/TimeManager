@@ -14,21 +14,17 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("./v1/swagger.json", "My API V1");
-    });
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-
-app.UseDeveloperExceptionPage();
 
 app.UseAuthorization();
 
