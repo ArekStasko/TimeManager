@@ -3,6 +3,6 @@
     public interface ICategory
     {
         public int Id { get; set; }
-        public string CatName { get; set; }
+        public string Name { get; set; }
     }
 }
