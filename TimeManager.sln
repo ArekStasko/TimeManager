@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.1.32210.238
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeManager.API", "TimeManage.API\TimeManager.API.csproj", "{2E56A342-E70C-42EF-96F3-75BB682D481A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeManager.API", "TimeManager.API\TimeManager.API.csproj", "{60B45B51-7C0F-4E82-8C90-4D66B53BD201}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2E56A342-E70C-42EF-96F3-75BB682D481A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E56A342-E70C-42EF-96F3-75BB682D481A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E56A342-E70C-42EF-96F3-75BB682D481A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E56A342-E70C-42EF-96F3-75BB682D481A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60B45B51-7C0F-4E82-8C90-4D66B53BD201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60B45B51-7C0F-4E82-8C90-4D66B53BD201}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60B45B51-7C0F-4E82-8C90-4D66B53BD201}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60B45B51-7C0F-4E82-8C90-4D66B53BD201}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A66AADEB-DF8C-4A32-9FBE-AB3F10620C0A}
+		SolutionGuid = {14AE0B79-5BF9-42BE-BE4D-52F101A3D47B}
 	EndGlobalSection
 EndGlobal

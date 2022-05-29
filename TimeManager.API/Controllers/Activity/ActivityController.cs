@@ -39,6 +39,8 @@ namespace TimeManager.API.Controllers.ActivityControllers
         public async Task<ActionResult<List<IActivity>>> Add(Activity activity)
         {
             _context.Activities.Add(activity);
+            _context.SaveChanges();
+
             return Ok(await _context.Activities.ToListAsync());
         }
 

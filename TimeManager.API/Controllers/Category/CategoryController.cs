@@ -22,9 +22,12 @@ namespace TimeManager.API.Controllers.CategoryControllers
         }
 
         [HttpPost(Name = "AddCategory")]
-        public void Add(string category)
+        public async Task<ActionResult<List<ICategory>>> Add(Category category)
         {
-            throw new NotImplementedException();
+            _context.Categories.Add(category);
+            _context.SaveChanges();
+
+            return Ok(await _context.Categories.ToListAsync());
         }
 
         [HttpPost(Name = "DeleteCategory")]
