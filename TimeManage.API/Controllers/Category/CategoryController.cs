@@ -5,9 +5,9 @@ using TimeManager.API.Data;
 
 namespace TimeManager.API.Controllers.CategoryControllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class CategoryController : ControllerBase, ICategoryController
     {
         private readonly DataContext _context;
         public CategoryController(DataContext context)
@@ -19,6 +19,24 @@ namespace TimeManager.API.Controllers.CategoryControllers
         public async Task<ActionResult<List<ICategory>>> Get()
         {
             return Ok(await _context.Categories.ToListAsync());
+        }
+
+        [HttpPost(Name = "AddCategory")]
+        public void Add(string category)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPost(Name = "DeleteCategory")]
+        public void Delete(string category)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPost(Name = "UpdateCategory")]
+        public void Update(string category)
+        {
+            throw new NotImplementedException();
         }
     }
 }
