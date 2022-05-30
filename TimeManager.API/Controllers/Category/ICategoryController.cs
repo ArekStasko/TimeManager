@@ -7,7 +7,7 @@ namespace TimeManager.API.Controllers.CategoryControllers
     {
         public Task<ActionResult<List<ICategory>>> Get();
         public Task<ActionResult<List<ICategory>>> Add(Category category);
-        public void Delete(string category);
-        public void Update(string category);
+        public Task<ActionResult<List<ICategory>>> Delete(int Id);
+        public Task<ActionResult<List<ICategory>>> Update(Category category);
     }
 }

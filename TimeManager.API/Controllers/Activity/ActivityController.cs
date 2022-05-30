@@ -45,15 +45,25 @@ namespace TimeManager.API.Controllers.ActivityControllers
         }
 
         [HttpDelete(Name = "DeleteActivity")]
-        public void Delete(int id)
+        public async Task<ActionResult<List<IActivity>>> Delete(int Id)
         {
-            throw new NotImplementedException();
+            var activity = _context.Activities.Single(act => act.Id == Id);
+            _context.Activities.Remove(activity);
+            _context.SaveChanges();
+
+            return Ok(await _context.Activities.ToListAsync());
         }
 
         [HttpPost(Name = "UpdateActivity")]
-        public void Update(IActivity activity)
+        public async Task<ActionResult<List<IActivity>>> Update(Activity activity)
         {
-            throw new NotImplementedException();
+            var act = _context.Activities.Single(act => act.Id == activity.Id);
+            _context.Activities.Remove(act);
+            _context.Activities.Add(activity);
+
+            _context.SaveChanges();
+
+            return Ok(await _context.Activities.ToListAsync());
         }
     }
 }

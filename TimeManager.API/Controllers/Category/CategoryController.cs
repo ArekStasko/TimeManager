@@ -31,15 +31,25 @@ namespace TimeManager.API.Controllers.CategoryControllers
         }
 
         [HttpPost(Name = "DeleteCategory")]
-        public void Delete(string category)
+        public async Task<ActionResult<List<ICategory>>> Delete(int Id)
         {
-            throw new NotImplementedException();
+            var category = _context.Categories.Single(c => c.Id == Id);
+            _context.Categories.Remove(category);
+            _context.SaveChanges();
+
+            return Ok(await _context.Categories.ToListAsync());
         }
 
         [HttpPost(Name = "UpdateCategory")]
-        public void Update(string category)
+        public async Task<ActionResult<List<ICategory>>> Update(Category category)
         {
-            throw new NotImplementedException();
+            var cat = _context.Categories.Single(c => c.Id == category.Id);
+            _context.Categories.Remove(cat);
+            _context.Categories.Add(category);
+
+            _context.SaveChanges();
+
+            return Ok(await _context.Categories.ToListAsync());
         }
     }
 }
