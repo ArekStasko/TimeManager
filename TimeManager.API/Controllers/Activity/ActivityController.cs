@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TimeManager.API.Data;
+using TimeManager.API.Processors.ActivityProcessors;
 
 namespace TimeManager.API.Controllers.ActivityControllers
 {
@@ -16,54 +16,45 @@ namespace TimeManager.API.Controllers.ActivityControllers
         }
 
         [HttpGet(Name = "GetActivities")]
-        public async Task<ActionResult<List<IActivity>>> Get()
+        public async Task<ActionResult<List<Activity>>> Get()
         {
-            return Ok(await _context.Activities.ToListAsync());
+            var Activity_GetAll = new Activity_GetAll(_context);
+            return Ok(await Activity_GetAll.Get());
         }
 
         [HttpGet(Name = "GetActivityById")]
         public async Task<ActionResult<IActivity>> GetById(int id)
         {
-            var activities = await _context.Activities.ToListAsync();
-            return Ok(activities.Single(act => act.Id == id));
+            var Activity_GetById = new Activity_GetById(_context);
+            return Ok(await Activity_GetById.Get(id));
         }
 
         [HttpGet(Name = "GetActivitiesByCategory")]
         public async Task<ActionResult<List<IActivity>>> GetByCategory(int categoryId)
         {
-            var activities = await _context.Activities.ToListAsync();
-            return Ok(activities.Where(act => act.CategoryId == categoryId));
+            var Activity_GetByCategory = new Activity_GetByCategory(_context);  
+            return Ok(await Activity_GetByCategory.Get(categoryId));
         }
 
         [HttpPost(Name = "AddActivity")]
         public async Task<ActionResult<List<IActivity>>> Add(Activity activity)
         {
-            _context.Activities.Add(activity);
-            _context.SaveChanges();
-
-            return Ok(await _context.Activities.ToListAsync());
+            var Activity_Add = new Activity_Add(_context);
+            return Ok(Activity_Add.Post(activity));          
         }
 
         [HttpDelete(Name = "DeleteActivity")]
         public async Task<ActionResult<List<IActivity>>> Delete(int Id)
         {
-            var activity = _context.Activities.Single(act => act.Id == Id);
-            _context.Activities.Remove(activity);
-            _context.SaveChanges();
-
-            return Ok(await _context.Activities.ToListAsync());
+            var Activity_Delete = new Activity_Delete(_context);
+            return Ok(Activity_Delete.Delete(Id));
         }
 
         [HttpPost(Name = "UpdateActivity")]
         public async Task<ActionResult<List<IActivity>>> Update(Activity activity)
         {
-            var act = _context.Activities.Single(act => act.Id == activity.Id);
-            _context.Activities.Remove(act);
-            _context.Activities.Add(activity);
-
-            _context.SaveChanges();
-
-            return Ok(await _context.Activities.ToListAsync());
+            var Activity_Update = new Activity_Update(_context);
+            return Ok(Activity_Update.Update(activity));
         }
     }
 }
