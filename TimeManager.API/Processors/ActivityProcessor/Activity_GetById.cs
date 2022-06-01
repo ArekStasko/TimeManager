@@ -5,14 +5,15 @@ using TimeManager.API.Data;
 
 namespace TimeManager.API.Processors.ActivityProcessors
 {
-    public class Activity_GetByCategory : Activity_Processor
+    public class Activity_GetById : Processor
     {
-        public Activity_GetByCategory(DataContext context) : base(context) { }
+        public Activity_GetById(DataContext context) : base(context) { }
 
-        public async Task<ActionResult<List<Activity>>> Get(int id)
+        public async Task<ActionResult<IActivity>> Get(int id)
         {
             var activities = await _context.Activities.ToListAsync();
-            return activities.Where(activity => activity.CategoryId == id).ToList();
+            return activities.Single(act => act.Id == id);
         }
+
     }
 }

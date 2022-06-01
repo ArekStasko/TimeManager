@@ -5,7 +5,7 @@ using TimeManager.API.Data;
 
 namespace TimeManager.API.Processors.ActivityProcessors
 {
-    public class Activity_GetAll : Activity_Processor
+    public class Activity_GetAll : Processor
     {
         public Activity_GetAll(DataContext context) : base(context) { }
         public async Task<ActionResult<List<Activity>>> Get()

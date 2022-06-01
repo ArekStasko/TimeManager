@@ -5,7 +5,7 @@ using TimeManager.API.Data;
 
 namespace TimeManager.API.Processors.ActivityProcessors
 {
-    public class Activity_Delete : Activity_Processor
+    public class Activity_Delete : Processor
     {
 
         public Activity_Delete(DataContext context) : base(context) { }

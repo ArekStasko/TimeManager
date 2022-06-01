@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TimeManager.API.Data;
+using TimeManager.API.Processors.CategoryProcessor;
 
 namespace TimeManager.API.Controllers.CategoryControllers
 {
@@ -16,40 +17,31 @@ namespace TimeManager.API.Controllers.CategoryControllers
         }
 
         [HttpGet(Name = "GetCategories")]
-        public async Task<ActionResult<List<ICategory>>> Get()
+        public async Task<ActionResult<List<Category>>> Get()
         {
-            return Ok(await _context.Categories.ToListAsync());
+            var Category_Get = new Category_Get(_context);
+            return Ok(await Category_Get.Get());
         }
 
         [HttpPost(Name = "AddCategory")]
-        public async Task<ActionResult<List<ICategory>>> Add(Category category)
+        public async Task<ActionResult<List<Category>>> Add(Category category)
         {
-            _context.Categories.Add(category);
-            _context.SaveChanges();
-
-            return Ok(await _context.Categories.ToListAsync());
+            var Category_Add = new Category_Add(_context);
+            return Ok(await Category_Add.Post(category));
         }
 
         [HttpPost(Name = "DeleteCategory")]
-        public async Task<ActionResult<List<ICategory>>> Delete(int Id)
+        public async Task<ActionResult<List<Category>>> Delete(int Id)
         {
-            var category = _context.Categories.Single(c => c.Id == Id);
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
-
-            return Ok(await _context.Categories.ToListAsync());
+            var Category_Delete = new Category_Delete(_context);
+            return Ok(Category_Delete.Delete(Id));
         }
 
         [HttpPost(Name = "UpdateCategory")]
-        public async Task<ActionResult<List<ICategory>>> Update(Category category)
+        public async Task<ActionResult<List<Category>>> Update(Category category)
         {
-            var cat = _context.Categories.Single(c => c.Id == category.Id);
-            _context.Categories.Remove(cat);
-            _context.Categories.Add(category);
-
-            _context.SaveChanges();
-
-            return Ok(await _context.Categories.ToListAsync());
+            var Category_Update = new Category_Update(_context);
+            return Ok(Category_Update.Update(category));
         }
     }
 }

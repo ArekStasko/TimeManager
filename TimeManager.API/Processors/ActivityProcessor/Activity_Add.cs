@@ -5,18 +5,15 @@ using TimeManager.API.Data;
 
 namespace TimeManager.API.Processors.ActivityProcessors
 {
-    public class Activity_Update : Activity_Processor
+    public class Activity_Add : Processor
     {
-        public Activity_Update(DataContext context) : base(context) { }
 
-        public async Task<ActionResult<List<Activity>>> Update(Activity activity)
+        public Activity_Add(DataContext context) : base(context) { }
+
+        public async Task<ActionResult<List<Activity>>> Post(Activity activity)
         {
-            var act = _context.Activities.Single(act => act.Id == activity.Id);
-            _context.Activities.Remove(act);
             _context.Activities.Add(activity);
-
             _context.SaveChanges();
-
             return await _context.Activities.ToListAsync();
         }
     }
