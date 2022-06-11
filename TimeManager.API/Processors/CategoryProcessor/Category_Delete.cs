@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TimeManager.API.Data;
+using TimeManager.API.Data.Response;
 
 namespace TimeManager.API.Processors.CategoryProcessor
 {
@@ -9,13 +10,25 @@ namespace TimeManager.API.Processors.CategoryProcessor
     {
         public Category_Delete(DataContext context) : base(context) { }
 
-        public async Task<ActionResult<List<Category>>> Delete(int id)
+        public async Task<ActionResult<Response<List<Category>>>> Delete(int id)
         {
-            var category = _context.Categories.Single(c => c.Id == id);
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
+            Response<List<Category>> response;
+            try
+            {
+                var category = _context.Categories.Single(c => c.Id == id);
+                _context.Categories.Remove(category);
+                _context.SaveChanges();
 
-            return await _context.Categories.ToListAsync();
+                var categories = await _context.Categories.ToListAsync();
+                response = new Response<List<Category>>(categories);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response = new Response<List<Category>>(ex, "Whoops, something went wrong");
+                return response;
+            }
+
         }
     }
 }

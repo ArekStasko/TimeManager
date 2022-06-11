@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TimeManager.API.Data;
+using TimeManager.API.Data.Response;
 
 namespace TimeManager.API.Processors.CategoryProcessor
 {
@@ -9,9 +10,21 @@ namespace TimeManager.API.Processors.CategoryProcessor
     {
         public Category_Get(DataContext context) : base(context) {}
 
-        public async Task<ActionResult<List<Category>>> Get()
+        public async Task<ActionResult<Response<List<Category>>>> Get()
         {
-            return await _context.Categories.ToListAsync();
+            Response<List<Category>> response;
+            try
+            {
+                var categories = await _context.Categories.ToListAsync();
+                response = new Response<List<Category>>(categories);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response = new Response<List<Category>>(ex, "Whoops, something went wrong");
+                return response;
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TimeManager.API.Data;
 using TimeManager.API.Processors.CategoryProcessor;
+using TimeManager.API.Data.Response;
 
 namespace TimeManager.API.Controllers.CategoryControllers
 {
@@ -17,28 +18,28 @@ namespace TimeManager.API.Controllers.CategoryControllers
         }
 
         [HttpGet(Name = "GetCategories")]
-        public async Task<ActionResult<List<Category>>> Get()
+        public async Task<ActionResult<Response<List<Category>>>> Get()
         {
             var Category_Get = new Category_Get(_context);
             return Ok(await Category_Get.Get());
         }
 
         [HttpPost(Name = "AddCategory")]
-        public async Task<ActionResult<List<Category>>> Add(Category category)
+        public async Task<ActionResult<Response<List<Category>>>> Add(Category category)
         {
             var Category_Add = new Category_Add(_context);
             return Ok(await Category_Add.Post(category));
         }
 
         [HttpPost(Name = "DeleteCategory")]
-        public async Task<ActionResult<List<Category>>> Delete(int Id)
+        public async Task<ActionResult<Response<List<Category>>>> Delete(int Id)
         {
             var Category_Delete = new Category_Delete(_context);
             return Ok(Category_Delete.Delete(Id));
         }
 
         [HttpPost(Name = "UpdateCategory")]
-        public async Task<ActionResult<List<Category>>> Update(Category category)
+        public async Task<ActionResult<Response<List<Category>>>> Update(Category category)
         {
             var Category_Update = new Category_Update(_context);
             return Ok(Category_Update.Update(category));
