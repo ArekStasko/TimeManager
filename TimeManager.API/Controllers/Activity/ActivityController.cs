@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using TimeManager.API.Data.Response;
 using TimeManager.API.Data;
 using TimeManager.API.Processors.ActivityProcessors;
 
@@ -16,10 +18,11 @@ namespace TimeManager.API.Controllers.ActivityControllers
         }
 
         [HttpGet(Name = "GetActivities")]
-        public async Task<ActionResult<List<Activity>>> Get()
+        public async Task<ActionResult<Response<List<Activity>>>> Get()
         {
             var Activity_GetAll = new Activity_GetAll(_context);
-            return Ok(await Activity_GetAll.Get());
+            var activities = await Activity_GetAll.Get();
+            return Ok(activities);
         }
 
         [HttpGet(Name = "GetActivityById")]
