@@ -20,7 +20,7 @@ namespace TimeManager.API.Processors.ActivityProcessors
             }
             catch (Exception ex)
             {
-                response = new Response<List<Activity>>(ex);
+                response = new Response<List<Activity>>(ex, "Whoops, something went wrong");
                 return response;
             }
         }

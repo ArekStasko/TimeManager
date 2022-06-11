@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TimeManager.API.Data;
+using TimeManager.API.Data.Response;
+
 
 namespace TimeManager.API.Processors.ActivityProcessors
 {
@@ -9,15 +11,29 @@ namespace TimeManager.API.Processors.ActivityProcessors
     {
         public Activity_Update(DataContext context) : base(context) { }
 
-        public async Task<ActionResult<List<Activity>>> Update(Activity activity)
+        public async Task<ActionResult<Response<List<Activity>>>> Update(Activity activity)
         {
-            var act = _context.Activities.Single(act => act.Id == activity.Id);
-            _context.Activities.Remove(act);
-            _context.Activities.Add(activity);
+            Response<List<Activity>> response;
 
-            _context.SaveChanges();
+            try
+            {
+                var act = _context.Activities.Single(act => act.Id == activity.Id);
+                _context.Activities.Remove(act);
+                _context.Activities.Add(activity);
 
-            return await _context.Activities.ToListAsync();
+                _context.SaveChanges();
+
+                var activities = await _context.Activities.ToListAsync();
+                response = new Response<List<Activity>>(activities);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response = new Response<List<Activity>>(ex, "Whoops, something went wrong");
+                return response;
+            }
+
+
         }
     }
 }

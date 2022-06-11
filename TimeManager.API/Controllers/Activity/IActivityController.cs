@@ -8,10 +8,10 @@ namespace TimeManager.API.Controllers.ActivityControllers
     public interface IActivityController
     {
         public Task<ActionResult<Response<List<Activity>>>> Get();
-        public Task<ActionResult<IActivity>> GetById(int id);
-        public Task<ActionResult<List<IActivity>>> GetByCategory(int categoryId);
-        public Task<ActionResult<List<IActivity>>> Add(Activity activit);
-        public Task<ActionResult<List<IActivity>>> Delete(int Id);
-        public Task<ActionResult<List<IActivity>>> Update(Activity activity);
+        public Task<ActionResult<Response<IActivity>>> GetById(int id);
+        public Task<ActionResult<Response<List<IActivity>>>> GetByCategory(int categoryId);
+        public Task<ActionResult<Response<List<IActivity>>>> Add(Activity activit);
+        public Task<ActionResult<Response<List<IActivity>>>> Delete(int Id);
+        public Task<ActionResult<Response<List<IActivity>>>> Update(Activity activity);
     }
 }

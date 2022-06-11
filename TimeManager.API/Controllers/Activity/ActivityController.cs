@@ -26,35 +26,35 @@ namespace TimeManager.API.Controllers.ActivityControllers
         }
 
         [HttpGet(Name = "GetActivityById")]
-        public async Task<ActionResult<IActivity>> GetById(int id)
+        public async Task<ActionResult<Response<IActivity>>> GetById(int id)
         {
             var Activity_GetById = new Activity_GetById(_context);
             return Ok(await Activity_GetById.Get(id));
         }
 
         [HttpGet(Name = "GetActivitiesByCategory")]
-        public async Task<ActionResult<List<IActivity>>> GetByCategory(int categoryId)
+        public async Task<ActionResult<Response<List<IActivity>>>> GetByCategory(int categoryId)
         {
             var Activity_GetByCategory = new Activity_GetByCategory(_context);  
             return Ok(await Activity_GetByCategory.Get(categoryId));
         }
 
         [HttpPost(Name = "AddActivity")]
-        public async Task<ActionResult<List<IActivity>>> Add(Activity activity)
+        public async Task<ActionResult<Response<List<IActivity>>>> Add(Activity activity)
         {
             var Activity_Add = new Activity_Add(_context);
             return Ok(Activity_Add.Post(activity));          
         }
 
         [HttpDelete(Name = "DeleteActivity")]
-        public async Task<ActionResult<List<IActivity>>> Delete(int Id)
+        public async Task<ActionResult<Response<List<IActivity>>>> Delete(int Id)
         {
             var Activity_Delete = new Activity_Delete(_context);
             return Ok(Activity_Delete.Delete(Id));
         }
 
         [HttpPost(Name = "UpdateActivity")]
-        public async Task<ActionResult<List<IActivity>>> Update(Activity activity)
+        public async Task<ActionResult<Response<List<IActivity>>>> Update(Activity activity)
         {
             var Activity_Update = new Activity_Update(_context);
             return Ok(Activity_Update.Update(activity));
