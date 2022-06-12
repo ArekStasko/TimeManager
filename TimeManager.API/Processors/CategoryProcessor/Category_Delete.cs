@@ -19,9 +19,8 @@ namespace TimeManager.API.Processors.CategoryProcessor
                 _context.Categories.Remove(category);
                 _context.SaveChanges();
 
-                var categories = await _context.Categories.ToListAsync();
-                response = new Response<List<Category>>(categories);
-                return response;
+                ICategory_Get Category_Get = new Category_Get(_context);
+                return await Category_Get.Get();
             }
             catch (Exception ex)
             {

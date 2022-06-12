@@ -21,9 +21,8 @@ namespace TimeManager.API.Processors.ActivityProcessors
                 _context.Activities.Add(activity);
                 _context.SaveChanges();
 
-                var activities = await _context.Activities.ToListAsync();
-                response = new Response<List<Activity>>(activities);
-                return response;
+                IActivity_GetAll Activity_GetAll = new Activity_GetAll(_context);
+                return await Activity_GetAll.Get();
             }
             catch (Exception ex)
             {

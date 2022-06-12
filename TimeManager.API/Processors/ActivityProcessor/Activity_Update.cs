@@ -19,13 +19,9 @@ namespace TimeManager.API.Processors.ActivityProcessors
             {
                 var act = _context.Activities.Single(act => act.Id == activity.Id);
                 _context.Activities.Remove(act);
-                _context.Activities.Add(activity);
 
-                _context.SaveChanges();
-
-                var activities = await _context.Activities.ToListAsync();
-                response = new Response<List<Activity>>(activities);
-                return response;
+                IActivity_Add Activity_Add = new Activity_Add(_context);
+                return await Activity_Add.Post(activity);
             }
             catch (Exception ex)
             {

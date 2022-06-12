@@ -18,13 +18,9 @@ namespace TimeManager.API.Processors.CategoryProcessor
             {
                 var cat = _context.Categories.Single(c => c.Id == category.Id);
                 _context.Categories.Remove(cat);
-                _context.Categories.Add(category);
 
-                _context.SaveChanges();
-
-                var categories = await _context.Categories.ToListAsync();
-                response = new Response<List<Category>>(categories);
-                return response;
+                ICategory_Add Category_Add = new Category_Add(_context);
+                return await Category_Add.Post(category);
             }
             catch (Exception ex)
             {
