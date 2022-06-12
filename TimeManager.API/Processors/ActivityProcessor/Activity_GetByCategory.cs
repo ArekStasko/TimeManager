@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TimeManager.API.Data;
 using TimeManager.API.Data.Response;
+using TimeManager.API.Processors.ActivityProcessor.Interfaces;
 
 
 namespace TimeManager.API.Processors.ActivityProcessors
 {
-    public class Activity_GetByCategory : Processor
+    public class Activity_GetByCategory : Processor, IActivity_GetByCategory
     {
         public Activity_GetByCategory(DataContext context) : base(context) { }
 

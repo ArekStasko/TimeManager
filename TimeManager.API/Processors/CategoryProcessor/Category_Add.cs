@@ -3,14 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TimeManager.API.Data;
 using TimeManager.API.Data.Response;
-
+using TimeManager.API.Processors.CategoryProcessor.Interfaces;
 
 namespace TimeManager.API.Processors.CategoryProcessor
 {
-    public class Category_Add : Processor
+    public class Category_Add : Processor, ICategory_Add
     {
         public Category_Add(DataContext context) : base(context) { }
-
 
         public async Task<ActionResult<Response<List<Category>>>> Post(Category category)
         {

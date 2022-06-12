@@ -8,6 +8,8 @@ namespace TimeManager.API.DependencyInjection
         {
             var builder = new ContainerBuilder();
 
+            
+
             return builder.Build();
         }
 

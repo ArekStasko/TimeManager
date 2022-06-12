@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TimeManager.API.Data;
 using TimeManager.API.Data.Response;
+using TimeManager.API.Processors.CategoryProcessor.Interfaces;
 
 namespace TimeManager.API.Processors.CategoryProcessor
 {
-    public class Category_Get : Processor
+    public class Category_Get : Processor, ICategory_Get
     {
         public Category_Get(DataContext context) : base(context) {}
 

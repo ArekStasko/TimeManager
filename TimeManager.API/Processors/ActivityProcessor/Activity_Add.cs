@@ -3,11 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TimeManager.API.Data;
 using TimeManager.API.Data.Response;
+using TimeManager.API.Processors.ActivityProcessor.Interfaces;
 
 
 namespace TimeManager.API.Processors.ActivityProcessors
 {
-    public class Activity_Add : Processor
+    public class Activity_Add : Processor, IActivity_Add
     {
 
         public Activity_Add(DataContext context) : base(context) { }
