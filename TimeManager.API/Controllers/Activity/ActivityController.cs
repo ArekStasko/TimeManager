@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using TimeManager.API.Data.Response;
 using TimeManager.API.Data;
-using TimeManager.API.Processors.ActivityProcessors;
+using TimeManager.API.Processors.ActivityProcessor;
 
 namespace TimeManager.API.Controllers.ActivityControllers
 {

@@ -4,7 +4,7 @@ using TimeManager.API.Data;
 using TimeManager.API.Data.Response;
 using TimeManager.API.Processors.ActivityProcessor.Interfaces;
 
-namespace TimeManager.API.Processors.ActivityProcessors
+namespace TimeManager.API.Processors.ActivityProcessor
 {
     public class Activity_GetAll : Processor, IActivity_GetAll
     {
