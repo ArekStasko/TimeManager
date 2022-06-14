@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TimeManager.API.Data;
 using TimeManager.API.Data.Response;
 
-namespace TimeManager.API.Processors.CategoryProcessor.Interfaces
+namespace TimeManager.API.Processors.CategoryProcessor
 {
     public interface ICategory_Get
     {

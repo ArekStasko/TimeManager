@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using Microsoft.AspNetCore.Mvc;
+using Autofac;
 using System.Reflection;
 
 namespace TimeManager.API.DependencyInjection
