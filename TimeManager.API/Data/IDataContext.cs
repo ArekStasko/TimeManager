@@ -2,10 +2,8 @@
 
 namespace TimeManager.API.Data
 {
-    public class DataContext : DbContext, IDataContext
+    public interface IDataContext
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-
         public DbSet<Activity> Activities { get; set; }
         public DbSet<Category> Categories { get; set; }
     }

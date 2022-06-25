@@ -1,10 +1,7 @@
 using TimeManager.API.Data;
 using Microsoft.EntityFrameworkCore;
-using TimeManager.API.DependencyInjection;
-
 
 var builder = WebApplication.CreateBuilder(args);
-var container = ContainerConfig.Configure();
 
     // Add services to the container.
 
@@ -12,6 +9,7 @@ var container = ContainerConfig.Configure();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
@@ -28,13 +26,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
-using (var scope = container.BeginLifetimeScope())
-{
-    app.Run();
-}
+app.Run();
+

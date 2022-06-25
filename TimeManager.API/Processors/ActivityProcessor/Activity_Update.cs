@@ -6,7 +6,7 @@ using TimeManager.API.Data.Response;
 
 namespace TimeManager.API.Processors.ActivityProcessor
 {
-    public class Activity_Update : Processor
+    public class Activity_Update : Processor, IActivity_Update
     {
         public Activity_Update(DataContext context) : base(context) { }
 
