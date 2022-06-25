@@ -20,28 +20,28 @@ namespace TimeManager.API.Controllers.CategoryControllers
         [HttpGet(Name = "GetCategories")]
         public async Task<ActionResult<Response<List<Category>>>> Get()
         {
-            var Category_Get = new Category_Get(_context);
+            ICategory_Get Category_Get = CategoryProcessor_Factory.GetCategory_Get(_context);
             return Ok(await Category_Get.Get());
         }
 
         [HttpPost(Name = "AddCategory")]
         public async Task<ActionResult<Response<List<Category>>>> Add(Category category)
         {
-            var Category_Add = new Category_Add(_context);
+            ICategory_Add Category_Add = CategoryProcessor_Factory.GetCategory_Add(_context);
             return Ok(await Category_Add.Post(category));
         }
 
         [HttpPost(Name = "DeleteCategory")]
         public async Task<ActionResult<Response<List<Category>>>> Delete(int Id)
         {
-            var Category_Delete = new Category_Delete(_context);
+            ICategory_Delete Category_Delete = CategoryProcessor_Factory.GetCategory_Delete(_context);
             return Ok(Category_Delete.Delete(Id));
         }
 
         [HttpPost(Name = "UpdateCategory")]
         public async Task<ActionResult<Response<List<Category>>>> Update(Category category)
         {
-            var Category_Update = new Category_Update(_context);
+            ICategory_Update Category_Update = CategoryProcessor_Factory.GetCategory_Update(_context);
             return Ok(Category_Update.Update(category));
         }
     }
