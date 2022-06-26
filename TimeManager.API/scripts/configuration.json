@@ -1,0 +1,13 @@
+{
+  "script": {
+    "DDL": [
+      "\\1.0.0\\dbo.Activities.Create.sql",
+      "\\1.0.0\\dbo.Categories.Create.sql"
+    ],
+    "DML": [
+      "\\1.0.0\\dbo.Activities.Insert.sql",
+      "\\1.0.0\\dbo.Categories.Insert.sql"
+    ],
+    "DQL": []
+  }
+}

@@ -18,27 +18,28 @@ $Location = Get-Location
 
 try
 {
-Write-Host "Start executing DDL scripts"
+$Data = Get-Content -Path $Location"\configuration.json" | ConvertFrom-Json 
 
-<#  
-Instead of creating sqlcmd for each file, there will be configuration file from which ps
-will get sql files to execute in for loop to get the code cleaner
-#>
+foreach($scriptSet in $Data.script.PSObject.Properties){
+    $sqlCommand = $scriptSet.Name
 
-Invoke-Sqlcmd -ServerInstance $SQLServer -Database $Database -InputFile $Location"\1.0.0\dbo.Activities.Create.sql" -Verbose *> $Location"\Logs\ScriptLogs.log"
-Invoke-Sqlcmd -ServerInstance $SQLServer -Database $Database -InputFile $Location"\1.0.0\dbo.Categories.Create.sql" -Verbose *> $Location"\Logs\ScriptLogs.log"
+    Write-Host "Start executing"$sqlCommand" scripts"
 
-Write-Host "DDL scripts successfully done" -ForegroundColor Green
+    if($Data.script.$sqlCommand.Length -lt 1){
+        Write-Host "There is no scripts for"$sqlCommand -ForegroundColor Yellow
+        continue
+    }
 
+    foreach ($scriptFile in $Data.script.$sqlCommand) 
+    {
+        Invoke-Sqlcmd -ServerInstance $SQLServer -Database $Database -InputFile $Location$scriptFile -Verbose *> $Location"\Logs\ScriptLogs.log"   
+    }
 
-Write-Host "Start executing DML scripts"
+    Write-Host $sqlCommand" scripts successfully done" -ForegroundColor Green
+}
 
-Invoke-Sqlcmd -ServerInstance $SQLServer -Database $Database -InputFile $Location"\1.0.0\dbo.Activities.Insert.sql" -Verbose *> $Location"\Logs\ScriptLogs.log"
-Invoke-Sqlcmd -ServerInstance $SQLServer -Database $Database -InputFile $Location"\1.0.0\dbo.Categories.Insert.sql" -Verbose *> $Location"\Logs\ScriptLogs.log"
+Write-Host "Building database succesfully done" -ForegroundColor Green
 
-Write-Host "DML scripts successfully done" -ForegroundColor Green
-
-Write-Host "Building db succesfully done" -ForegroundColor Green
 }
 catch 
 {
