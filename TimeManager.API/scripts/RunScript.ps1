@@ -1,4 +1,35 @@
-﻿if (-not (Get-Command Invoke-Sqlcmd -ErrorAction SilentlyContinue)) {
+﻿$param = $args
+
+<# 
+Scripts for Latest mode and checkDB command is not yet implemented, in the future
+scripts will be divided into smaller functions 
+#>
+
+if($args.Length -eq 0){
+    Write-Host "You should choose mode" -ForegroundColor Red
+    Write-Host "If you need help type command help" 
+
+    break
+}
+
+if($args[0] -eq "help"){
+    Write-Host "RunScript file is used for deploying database"
+    Write-Host "Available modes :"
+    Write-Host "* Full" -NoNewline -ForegroundColor Yellow
+    Write-Output "- use this mode if you want to deploy full database from scratch"
+    Write-Host "* Latest" -NoNewline -ForegroundColor Yellow 
+    Write-Output "- use this mode if you want to deploy only latest version of database"
+    Write-Host "Available commands :"
+    Write-Host "* help" -NoNewline -ForegroundColor Yellow 
+    Write-Output "- use this command if you need help"
+    Write-Host "* checkDB" -NoNewline -ForegroundColor Yellow 
+    Write-Output "- use for checking database state"
+
+    break;
+}
+
+
+if (-not (Get-Command Invoke-Sqlcmd -ErrorAction SilentlyContinue)) {
     Write-Error "Unabled to find Invoke-SqlCmd cmdlet"
 }
 
@@ -9,6 +40,8 @@ if (-not (Get-Module -Name SqlServer | Where-Object {$_.ExportedCommands.Count -
 if (-not (Get-Module -ListAvailable | Where-Object Name -eq SqlServer)) {
     Write-Error "Can't find the SqlServer module"
 }
+
+if($args[0] -eq "Full"){
 
 Import-Module SqlServer -ErrorAction Stop
 
@@ -44,4 +77,7 @@ Write-Host "Building database succesfully done" -ForegroundColor Green
 catch 
 {
     Write-Host "Error has occured, look to log file" -ForegroundColor Red
+    Write-Host "If you need help type command help" -ForegroundColor Yellow
+}
+
 }
