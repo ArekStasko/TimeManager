@@ -1,9 +1,7 @@
 ﻿$param = $args
-
-<# 
-Scripts for Latest mode and checkDB command is not yet implemented, in the future
-scripts will be divided into smaller functions 
-#>
+$csprojPath = '../TimeManager.API.csproj'
+$xml = [Xml] (Get-Content $csprojPath)
+$version = [Version] $xml.Project.PropertyGroup.Version
 
 if($args.Length -eq 0){
     Write-Host "You should choose mode" -ForegroundColor Red
@@ -81,3 +79,5 @@ catch
 }
 
 }
+
+#>
