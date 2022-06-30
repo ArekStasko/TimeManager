@@ -2,6 +2,8 @@
 $csprojPath = '../TimeManager.API.csproj'
 $xml = [Xml] (Get-Content $csprojPath)
 $version = [Version] $xml.Project.PropertyGroup.Version
+$Location = Get-Location
+
 
 if($args.Length -eq 0){
     Write-Host "You should choose mode" -ForegroundColor Red
@@ -39,7 +41,7 @@ if (-not (Get-Module -ListAvailable | Where-Object Name -eq SqlServer)) {
     Write-Error "Can't find the SqlServer module"
 }
 
-if($args[0] -eq "Full"){
+if(($args[0] -eq "Full") -or ($args[0] -eq "Latest")){
 
 Import-Module SqlServer -ErrorAction Stop
 
@@ -63,6 +65,13 @@ foreach($scriptSet in $Data.script.PSObject.Properties){
 
     foreach ($scriptFile in $Data.script.$sqlCommand) 
     {
+        $scriptFileVersion = $scriptFile.Substring(1, [Math]::Min($scriptFile.Length, 5))
+
+        if(($args[0] -eq "Latest") -and ($scriptFileVersion -eq $version)){
+        Invoke-Sqlcmd -ServerInstance $SQLServer -Database $Database -InputFile $Location$scriptFile -Verbose *> $Location"\Logs\ScriptLogs.log"   
+        continue 
+        }
+
         Invoke-Sqlcmd -ServerInstance $SQLServer -Database $Database -InputFile $Location$scriptFile -Verbose *> $Location"\Logs\ScriptLogs.log"   
     }
 
@@ -79,5 +88,3 @@ catch
 }
 
 }
-
-#>
