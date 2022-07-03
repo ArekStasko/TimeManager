@@ -1,4 +1,6 @@
-﻿$param = $args
+﻿Import-Module -Name SqlServer
+
+$param = $args
 $csprojPath = '../TimeManager.API.csproj'
 $xml = [Xml] (Get-Content $csprojPath)
 $version = [Version] $xml.Project.PropertyGroup.Version
@@ -45,7 +47,7 @@ if(($args[0] -eq "Full") -or ($args[0] -eq "Latest")){
 
 Import-Module SqlServer -ErrorAction Stop
 
-$SQLServer = "DESKTOP-59AMNOB\PROJECTS"
+$SQLServer = "DESKTOP-3JOII9M"
 $Database = 'TimeManager'
 $Location = Get-Location
 

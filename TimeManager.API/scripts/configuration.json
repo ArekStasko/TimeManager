@@ -2,7 +2,8 @@
   "script": {
     "DDL": [
       "\\1.0.0\\dbo.Activities.Create.sql",
-      "\\1.0.0\\dbo.Categories.Create.sql"
+      "\\1.0.0\\dbo.Categories.Create.sql",
+      "\\1.0.0\\dbo.vwActivityCategory.Create.sql"
     ],
     "DML": [
       "\\1.0.0\\dbo.Activities.Insert.sql",
