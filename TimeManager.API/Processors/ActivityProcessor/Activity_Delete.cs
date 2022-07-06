@@ -3,28 +3,28 @@ using Microsoft.EntityFrameworkCore;
 using TimeManager.API.Data;
 using TimeManager.API.Data.Response;
 
-namespace TimeManager.API.Processors.ActivityProcessor
+namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
-    public class Activity_Delete : Processor, IActivity_Delete
+    public class vwActivityCategory_Delete : Processor, IActivity_Delete
     {
 
-        public Activity_Delete(DataContext context) : base(context) { }
+        public vwActivityCategory_Delete(DataContext context) : base(context) { }
 
-        public async Task<ActionResult<Response<List<Activity>>>> Delete(int Id)
+        public async Task<ActionResult<Response<List<vwActivityCategory>>>> Delete(int Id)
         {
-            Response<List<Activity>> response;
+            Response<List<vwActivityCategory>> response;
             try
             {
                 var activity = _context.Activities.Single(act => act.Id == Id);
                 _context.Activities.Remove(activity);
                 _context.SaveChanges();
 
-                IActivity_GetAll Activity_GetAll = new Activity_GetAll(_context);
-                return await Activity_GetAll.Get();
+                IvwActivityCategory_GetAll vwActivityCategory_GetAll = new vwActivityCategory_GetAll(_context);
+                return await vwActivityCategory_GetAll.Get();
             }
             catch (Exception ex)
             {
-                response = new Response<List<Activity>>(ex, "Whoops, something went wrong");
+                response = new Response<List<vwActivityCategory>>(ex, "Whoops, something went wrong");
                 return response;
             }
 

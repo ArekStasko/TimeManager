@@ -5,27 +5,27 @@ using TimeManager.API.Data;
 using TimeManager.API.Data.Response;
 
 
-namespace TimeManager.API.Processors.ActivityProcessor
+namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
     public class Activity_Add : Processor, IActivity_Add
     {
 
         public Activity_Add(DataContext context) : base(context) { }
 
-        public async Task<ActionResult<Response<List<Activity>>>> Post(Activity activity)
+        public async Task<ActionResult<Response<List<vwActivityCategory>>>> Post(Activity activity)
         {
-            Response<List<Activity>> response;
+            Response<List<vwActivityCategory>> response;
             try
             {
                 _context.Activities.Add(activity);
                 _context.SaveChanges();
 
-                IActivity_GetAll Activity_GetAll = new Activity_GetAll(_context);
-                return await Activity_GetAll.Get();
+                IvwActivityCategory_GetAll vwActivityCategory_GetAll = new vwActivityCategory_GetAll(_context);
+                return await vwActivityCategory_GetAll.Get();
             }
             catch (Exception ex)
             {
-                response = new Response<List<Activity>>(ex, "Whoops, Something went wrong");
+                response = new Response<List<vwActivityCategory>>(ex, "Whoops, Something went wrong");
                 return response;
             }
 

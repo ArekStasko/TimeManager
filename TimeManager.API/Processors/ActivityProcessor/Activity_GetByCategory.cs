@@ -4,27 +4,27 @@ using TimeManager.API.Data;
 using TimeManager.API.Data.Response;
 
 
-namespace TimeManager.API.Processors.ActivityProcessor
+namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
-    public class Activity_GetByCategory : Processor, IActivity_GetByCategory
+    public class vwActivityCategory_GetByCategory : Processor, IvwActivityCategory_GetByCategory
     {
-        public Activity_GetByCategory(DataContext context) : base(context) { }
+        public vwActivityCategory_GetByCategory(DataContext context) : base(context) { }
 
-        public async Task<ActionResult<Response<List<Activity>>>> Get(int id)
+        public async Task<ActionResult<Response<List<vwActivityCategory>>>> Get(int id)
         {
-            Response<List<Activity>> response;
+            Response<List<vwActivityCategory>> response;
 
             try
             {
-                var activities = await _context.Activities.ToListAsync();
+                var activities = await _context.vwActivityCategory.ToListAsync();
                 activities = activities.Where(activity => activity.CategoryId == id).ToList();
 
-                response = new Response<List<Activity>>(activities);
+                response = new Response<List<vwActivityCategory>>(activities);
                 return response;
             }
             catch (Exception ex)
             {
-                response = new Response<List<Activity>>(ex, "Whoops, something went wrong");
+                response = new Response<List<vwActivityCategory>>(ex, "Whoops, something went wrong");
                 return response;
             }
         }

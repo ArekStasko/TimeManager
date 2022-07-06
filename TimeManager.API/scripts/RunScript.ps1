@@ -76,7 +76,6 @@ foreach($scriptSet in $Data.script.PSObject.Properties){
 
         Invoke-Sqlcmd -ServerInstance $SQLServer -Database $Database -InputFile $Location$scriptFile -Verbose *> $Location"\Logs\ScriptLogs.log"   
     }
-
     Write-Host $sqlCommand" scripts successfully done" -ForegroundColor Green
 }
 

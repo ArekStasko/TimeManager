@@ -4,10 +4,10 @@ using TimeManager.API.Data;
 using TimeManager.API.Data.Response;
 
 
-namespace TimeManager.API.Processors.ActivityProcessor
+namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
     public interface IActivity_Update
     {
-        public Task<ActionResult<Response<List<Activity>>>> Update(Activity activity);
+        public Task<ActionResult<Response<List<vwActivityCategory>>>> Update(Activity activity);
     }
 }

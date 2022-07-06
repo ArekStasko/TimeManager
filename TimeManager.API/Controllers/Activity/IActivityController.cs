@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using TimeManager.API.Data.Response;
 
 
-namespace TimeManager.API.Controllers.ActivityControllers
+namespace TimeManager.API.Controllers.vwActivityCategoryControllers
 {
     public interface IActivityController
     {
-        public Task<ActionResult<Response<List<Activity>>>> Get();
-        public Task<ActionResult<Response<IActivity>>> GetById(int id);
-        public Task<ActionResult<Response<List<IActivity>>>> GetByCategory(int categoryId);
-        public Task<ActionResult<Response<List<IActivity>>>> Add(Activity activit);
-        public Task<ActionResult<Response<List<IActivity>>>> Delete(int Id);
-        public Task<ActionResult<Response<List<IActivity>>>> Update(Activity activity);
+        public Task<ActionResult<Response<List<vwActivityCategory>>>> Get();
+        public Task<ActionResult<Response<vwActivityCategory>>> GetById(int id);
+        public Task<ActionResult<Response<List<vwActivityCategory>>>> GetByCategory(int categoryId);
+        public Task<ActionResult<Response<List<vwActivityCategory>>>> Add(Activity activity);
+        public Task<ActionResult<Response<List<vwActivityCategory>>>> Delete(int Id);
+        public Task<ActionResult<Response<List<vwActivityCategory>>>> Update(Activity activity);
     }
 }

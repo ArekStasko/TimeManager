@@ -21,7 +21,7 @@ namespace TimeManager.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("TimeManager.API.Data.Activity", b =>
+            modelBuilder.Entity("TimeManager.API.Data.vwActivityCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

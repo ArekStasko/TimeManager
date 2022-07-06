@@ -4,27 +4,27 @@ using Microsoft.EntityFrameworkCore;
 using TimeManager.API.Data;
 using TimeManager.API.Data.Response;
 
-namespace TimeManager.API.Processors.ActivityProcessor
+namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
-    public class Activity_Update : Processor, IActivity_Update
+    public class vwActivityCategory_Update : Processor, IActivity_Update
     {
-        public Activity_Update(DataContext context) : base(context) { }
+        public vwActivityCategory_Update(DataContext context) : base(context) { }
 
-        public async Task<ActionResult<Response<List<Activity>>>> Update(Activity activity)
+        public async Task<ActionResult<Response<List<vwActivityCategory>>>> Update(Activity activity)
         {
-            Response<List<Activity>> response;
+            Response<List<vwActivityCategory>> response;
 
             try
             {
                 var act = _context.Activities.Single(act => act.Id == activity.Id);
                 _context.Activities.Remove(act);
 
-                IActivity_Add Activity_Add = new Activity_Add(_context);
-                return await Activity_Add.Post(activity);
+                IActivity_Add activity_Add = new Activity_Add(_context);
+                return await activity_Add.Post(activity);
             }
             catch (Exception ex)
             {
-                response = new Response<List<Activity>>(ex, "Whoops, something went wrong");
+                response = new Response<List<vwActivityCategory>>(ex, "Whoops, something went wrong");
                 return response;
             }
 

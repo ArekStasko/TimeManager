@@ -3,23 +3,23 @@ using Microsoft.EntityFrameworkCore;
 using TimeManager.API.Data;
 using TimeManager.API.Data.Response;
 
-namespace TimeManager.API.Processors.ActivityProcessor
+namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
-    public class Activity_GetAll : Processor, IActivity_GetAll
+    public class vwActivityCategory_GetAll : Processor, IvwActivityCategory_GetAll
     {
-        public Activity_GetAll(DataContext context) : base(context) { }
-        public async Task<ActionResult<Response<List<Activity>>>> Get()
+        public vwActivityCategory_GetAll(DataContext context) : base(context) { }
+        public async Task<ActionResult<Response<List<vwActivityCategory>>>> Get()
         {
-            Response<List<Activity>> response;
+            Response<List<vwActivityCategory>> response;
             try
             {
-                var activities = await _context.Activities.ToListAsync();
-                response = new Response<List<Activity>>(activities);
+                var activities = await _context.vwActivityCategory.ToListAsync();
+                response = new Response<List<vwActivityCategory>>(activities);
                 return response;
             }
             catch (Exception ex)
             {
-                response = new Response<List<Activity>>(ex, "Whoops, something went wrong");
+                response = new Response<List<vwActivityCategory>>(ex, "Whoops, something went wrong");
                 return response;
             }
         }

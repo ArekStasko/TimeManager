@@ -2,10 +2,10 @@
 using TimeManager.API.Data;
 using TimeManager.API.Data.Response;
 
-namespace TimeManager.API.Processors.ActivityProcessor
+namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
     public interface IActivity_Add
     {
-        public Task<ActionResult<Response<List<Activity>>>> Post(Activity activity);
+        public Task<ActionResult<Response<List<vwActivityCategory>>>> Post(Activity activity);
     }
 }

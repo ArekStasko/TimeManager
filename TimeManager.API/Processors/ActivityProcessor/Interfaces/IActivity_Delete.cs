@@ -2,10 +2,10 @@
 using TimeManager.API.Data;
 using TimeManager.API.Data.Response;
 
-namespace TimeManager.API.Processors.ActivityProcessor
+namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
     public interface IActivity_Delete
     {
-        public Task<ActionResult<Response<List<Activity>>>> Delete(int Id);
+        public Task<ActionResult<Response<List<vwActivityCategory>>>> Delete(int Id);
     }
 }
