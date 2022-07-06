@@ -47,7 +47,7 @@ if(($args[0] -eq "Full") -or ($args[0] -eq "Latest")){
 
 Import-Module SqlServer -ErrorAction Stop
 
-$SQLServer = "DESKTOP-3JOII9M"
+$SQLServer = "DESKTOP-59AMNOB\PROJECTS"
 $Database = 'TimeManager'
 $Location = Get-Location
 
