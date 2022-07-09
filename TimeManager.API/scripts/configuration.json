@@ -6,7 +6,8 @@
       "\\1.0.0\\dbo.vwActivityCategory.Create.sql",
       "\\1.1.0\\dbo.vwActivityCategory.Alter.sql",
       "\\2.0.0\\dbo.Activities.Alter.sql",
-      "\\2.0.0\\dbo.vwCategories.Create.sql"
+      "\\2.0.0\\dbo.vwCategories.Create.sql",
+      "\\2.0.0\\dbo.vwActivityCategory.Alter.sql"
     ],
     "DML": [
       "\\2.0.0\\dbo.Activities.Insert.sql",

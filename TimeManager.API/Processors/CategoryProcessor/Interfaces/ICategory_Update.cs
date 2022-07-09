@@ -6,6 +6,6 @@ namespace TimeManager.API.Processors.CategoryProcessor
 {
     public interface ICategory_Update
     {
-        public Task<ActionResult<Response<List<Category>>>> Update(Category category);
+        public Task<ActionResult<Response<List<vwCategory>>>> Update(Category category);
     }
 }

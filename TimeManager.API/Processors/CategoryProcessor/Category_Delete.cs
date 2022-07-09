@@ -9,9 +9,9 @@ namespace TimeManager.API.Processors.CategoryProcessor
     {
         public Category_Delete(DataContext context) : base(context) { }
 
-        public async Task<ActionResult<Response<List<Category>>>> Delete(int id)
+        public async Task<ActionResult<Response<List<vwCategory>>>> Delete(int id)
         {
-            Response<List<Category>> response;
+            Response<List<vwCategory>> response;
             try
             {
                 var category = _context.Categories.Single(c => c.Id == id);
@@ -23,7 +23,7 @@ namespace TimeManager.API.Processors.CategoryProcessor
             }
             catch (Exception ex)
             {
-                response = new Response<List<Category>>(ex, "Whoops, something went wrong");
+                response = new Response<List<vwCategory>>(ex, "Whoops, something went wrong");
                 return response;
             }
 

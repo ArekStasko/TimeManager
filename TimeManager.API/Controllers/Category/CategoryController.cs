@@ -18,28 +18,28 @@ namespace TimeManager.API.Controllers.CategoryControllers
         }
 
         [HttpGet(Name = "GetCategories")]
-        public async Task<ActionResult<Response<List<Category>>>> Get()
+        public async Task<ActionResult<Response<List<vwCategory>>>> Get()
         {
             ICategory_Get Category_Get = CategoryProcessor_Factory.GetCategory_Get(_context);
             return Ok(await Category_Get.Get());
         }
 
         [HttpPost(Name = "AddCategory")]
-        public async Task<ActionResult<Response<List<Category>>>> Add(Category category)
+        public async Task<ActionResult<Response<List<vwCategory>>>> Add(Category category)
         {
             ICategory_Add Category_Add = CategoryProcessor_Factory.GetCategory_Add(_context);
             return Ok(await Category_Add.Post(category));
         }
 
         [HttpPost(Name = "DeleteCategory")]
-        public async Task<ActionResult<Response<List<Category>>>> Delete(int Id)
+        public async Task<ActionResult<Response<List<vwCategory>>>> Delete(int Id)
         {
             ICategory_Delete Category_Delete = CategoryProcessor_Factory.GetCategory_Delete(_context);
             return Ok(Category_Delete.Delete(Id));
         }
 
         [HttpPost(Name = "UpdateCategory")]
-        public async Task<ActionResult<Response<List<Category>>>> Update(Category category)
+        public async Task<ActionResult<Response<List<vwCategory>>>> Update(Category category)
         {
             ICategory_Update Category_Update = CategoryProcessor_Factory.GetCategory_Update(_context);
             return Ok(Category_Update.Update(category));

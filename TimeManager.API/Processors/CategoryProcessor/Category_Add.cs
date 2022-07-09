@@ -10,9 +10,9 @@ namespace TimeManager.API.Processors.CategoryProcessor
     {
         public Category_Add(DataContext context) : base(context) { }
 
-        public async Task<ActionResult<Response<List<Category>>>> Post(Category category)
+        public async Task<ActionResult<Response<List<vwCategory>>>> Post(Category category)
         {
-            Response<List<Category>> response;
+            Response<List<vwCategory>> response;
             try
             {
                 _context.Categories.Add(category);
@@ -23,7 +23,7 @@ namespace TimeManager.API.Processors.CategoryProcessor
             }
             catch (Exception ex)
             {
-                response = new Response<List<Category>>(ex, "Whoops, something went wrong");
+                response = new Response<List<vwCategory>>(ex, "Whoops, something went wrong");
                 return response;
             }
 

@@ -6,6 +6,6 @@ namespace TimeManager.API.Processors.CategoryProcessor
 {
     public interface ICategory_Delete
     {
-        public Task<ActionResult<Response<List<Category>>>> Delete(int id);
+        public Task<ActionResult<Response<List<vwCategory>>>> Delete(int id);
     }
 }
