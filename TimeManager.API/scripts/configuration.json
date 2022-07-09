@@ -4,11 +4,13 @@
       "\\1.0.0\\dbo.Activities.Create.sql",
       "\\1.0.0\\dbo.Categories.Create.sql",
       "\\1.0.0\\dbo.vwActivityCategory.Create.sql",
-      "\\1.1.0\\dbo.vwActivityCategory.Alter.sql"
+      "\\1.1.0\\dbo.vwActivityCategory.Alter.sql",
+      "\\2.0.0\\dbo.Activities.Alter.sql",
+      "\\2.0.0\\dbo.vwCategories.Create.sql"
     ],
     "DML": [
-      "\\1.0.0\\dbo.Activities.Insert.sql",
-      "\\1.0.0\\dbo.Categories.Insert.sql"
+      "\\2.0.0\\dbo.Activities.Insert.sql",
+      "\\2.0.0\\dbo.Categories.Insert.sql"
     ],
     "DQL": []
   }
