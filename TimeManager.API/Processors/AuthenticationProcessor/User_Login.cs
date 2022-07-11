@@ -12,11 +12,12 @@ namespace TimeManager.API.Processors.AuthenticationProcessor
             try
             {
                 User_Hash userHash = new User_Hash(_context);
+                var user = _context.Users.FirstOrDefault(u => u.UserName == data.UserName);
 
-                if (userHash.VerifyPasswordHash(data))
+                if (userHash.VerifyPasswordHash(data.Password, user))
                 {
 
-                    response = new Response<string>("dziala lol");
+                    //here the token will be generated
                     return response;
                 }
 

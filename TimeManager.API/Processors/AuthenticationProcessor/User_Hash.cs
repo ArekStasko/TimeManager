@@ -20,15 +20,12 @@ namespace TimeManager.API.Processors.AuthenticationProcessor
             return new Tuple<byte[], byte[]>(passwordHash, passwordSalt);
         }
 
-        public bool VerifyPasswordHash(UserDTO data)
-        {
-            Tuple<byte[], byte[]> hash = CreatePasswordHash(data.Password);
-            var user = _context.Users.FirstOrDefault(u => u.UserName == data.UserName);
-
-            using (var hmac = new HMACSHA512(hash.Item2))
+        public bool VerifyPasswordHash(string password, User user)
+        {         
+            using (var hmac = new HMACSHA512(user.PasswordSalt))
             {
-                var computedHash = user.PasswordHash;
-                return computedHash.SequenceEqual(hash.Item1);
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return computedHash.SequenceEqual(user.PasswordHash);
             }
         }
     }
