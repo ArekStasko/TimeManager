@@ -1,4 +1,6 @@
-﻿namespace TimeManager.API.Data
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TimeManager.API.Data
 {
     public class User : IUser
     {
@@ -8,6 +10,7 @@
             PasswordHash = passwordHash;
             PasswordSalt = passwordSalt;
         }
+        [Key]
         public int Id { get; set; }
         public string UserName { get; set; }
         public byte[] PasswordHash { get; set; }

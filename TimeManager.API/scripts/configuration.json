@@ -8,7 +8,9 @@
       "\\2.0.0\\dbo.Activities.Alter.sql",
       "\\2.0.0\\dbo.vwCategories.Create.sql",
       "\\2.0.0\\dbo.vwActivityCategory.Alter.sql",
-      "\\2.1.0\\dbo.Users.Create.sql"
+      "\\2.1.0\\dbo.Users.Create.sql",
+      "\\2.1.0\\dbo.Tokens.Create.sql",
+      "\\2.1.0\\dbo.TokenKey.Create.sql"
     ],
     "DML": [
       "\\2.0.0\\dbo.Activities.Insert.sql",

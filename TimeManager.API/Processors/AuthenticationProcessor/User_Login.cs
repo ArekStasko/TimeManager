@@ -1,14 +1,15 @@
 ﻿using TimeManager.API.Data.Response;
 using TimeManager.API.Data;
+using TimeManager.API.Authentication;
 
 namespace TimeManager.API.Processors.AuthenticationProcessor
 {
     public class User_Login : Processor
     {
         public User_Login(DataContext context) : base(context) { }
-        public Response<string> Login(UserDTO data)
+        public Response<Token> Login(UserDTO data)
         {
-            Response<string> response;
+            Response<Token> response;
             try
             {
                 User_Hash userHash = new User_Hash(_context);
@@ -17,7 +18,8 @@ namespace TimeManager.API.Processors.AuthenticationProcessor
                 if (userHash.VerifyPasswordHash(data.Password, user))
                 {
 
-                    //here the token will be generated
+                    Token token = userHash.CreateToken(user);
+                    response = new Response<Token>(token);
                     return response;
                 }
 
@@ -25,7 +27,7 @@ namespace TimeManager.API.Processors.AuthenticationProcessor
             }
             catch (Exception ex)
             {
-                response = new Response<string>(ex, "Whoops something went wrong");
+                response = new Response<Token>(ex, "Whoops something went wrong");
                 return response;
             }
         }
