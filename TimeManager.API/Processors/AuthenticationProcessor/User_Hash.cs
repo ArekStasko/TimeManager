@@ -35,6 +35,10 @@ namespace TimeManager.API.Processors.AuthenticationProcessor
 
         public Token CreateToken(User user)
         {
+            var checkToken = _context.Tokens.SingleOrDefault(t => t.userId == user.Id);   
+            if (checkToken != null) CheckExpirationDate(checkToken);
+
+
             List<Claim> claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name, user.UserName)
@@ -53,9 +57,18 @@ namespace TimeManager.API.Processors.AuthenticationProcessor
 
             Token token = new Token(jwt);
             token.userId = user.Id;
+            token.createDate = DateTime.Now;
+            token.expirationDate = DateTime.Now.AddDays(1);
             _context.Tokens.Add(token);
             _context.SaveChanges();
             return token;
         }
+
+        private void CheckExpirationDate(Token token)
+        {
+            int tokenTime = token.createDate.CompareTo(token.expirationDate);
+            if(tokenTime > 0) _context.Tokens.Remove(token);
+        }
+
     }
 }

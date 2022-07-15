@@ -14,6 +14,8 @@ namespace TimeManager.API.Authentication
         [Key]
         public int Id { get; set; }
         public string token { get; set; }
+        public DateTime createDate { get; set; }
+        public DateTime expirationDate { get; set; }
         public int userId { get; set; }
 
     }
