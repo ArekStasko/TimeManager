@@ -11,7 +11,7 @@ namespace TimeManager.API.Processors.AuthenticationProcessor
             Response<User> response;
             try
             {
-                User_Hash hashGenerator = new User_Hash(_context);
+                User_Utilities hashGenerator = new User_Utilities(_context);
                 Tuple<byte[], byte[]> hash = hashGenerator.CreatePasswordHash(data.Password);
 
                 User user = new User(data.UserName, hash.Item1, hash.Item2);

@@ -7,9 +7,9 @@ using System.IdentityModel.Tokens.Jwt;
 
 namespace TimeManager.API.Processors.AuthenticationProcessor
 {
-    public class User_Hash : Processor
+    public class User_Utilities : Processor
     {
-        public User_Hash(DataContext context) : base(context) { }
+        public User_Utilities(DataContext context) : base(context) { }
         public Tuple<byte[], byte[]> CreatePasswordHash(string password)
         {
             byte[] passwordSalt;
@@ -35,8 +35,11 @@ namespace TimeManager.API.Processors.AuthenticationProcessor
 
         public Token CreateToken(User user)
         {
-            var checkToken = _context.Tokens.SingleOrDefault(t => t.userId == user.Id);   
-            if (checkToken != null) CheckExpirationDate(checkToken);
+            var token = _context.Tokens.SingleOrDefault(t => t.userId == user.Id);   
+            if (token != null && CheckExpirationDate(token))
+            {
+                return token;
+            }
 
 
             List<Claim> claims = new List<Claim>()
@@ -55,7 +58,7 @@ namespace TimeManager.API.Processors.AuthenticationProcessor
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(jwtToken);
 
-            Token token = new Token(jwt);
+            token = new Token(jwt);
             token.userId = user.Id;
             token.createDate = DateTime.Now;
             token.expirationDate = DateTime.Now.AddDays(1);
@@ -64,11 +67,21 @@ namespace TimeManager.API.Processors.AuthenticationProcessor
             return token;
         }
 
-        private void CheckExpirationDate(Token token)
+        public bool IsAuthorised(User user)
         {
-            int tokenTime = token.createDate.CompareTo(token.expirationDate);
-            if(tokenTime > 0) _context.Tokens.Remove(token);
+            var token = _context.Tokens.SingleOrDefault(t => t.userId == user.Id);
+            if (token != null && CheckExpirationDate(token)) return true;
+
+            return false;
         }
+
+        private bool CheckExpirationDate(Token token)
+        {
+            int tokenTime = DateTime.Now.CompareTo(token.expirationDate);
+            if (tokenTime > 0) _context.Tokens.Remove(token);
+            return tokenTime < 0;
+        }
+
 
     }
 }

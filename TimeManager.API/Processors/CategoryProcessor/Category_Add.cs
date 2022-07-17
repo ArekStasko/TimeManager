@@ -6,20 +6,20 @@ using TimeManager.API.Data.Response;
 
 namespace TimeManager.API.Processors.CategoryProcessor
 {
-    public class Category_Add : Processor, ICategory_Add
+    public class Category_Add : Auth_Processor, ICategory_Add
     {
         public Category_Add(DataContext context) : base(context) { }
 
-        public async Task<ActionResult<Response<List<vwCategory>>>> Post(Category category)
+        public async Task<ActionResult<Response<List<vwCategory>>>> Post(Request<Category> request)
         {
             Response<List<vwCategory>> response;
             try
             {
-                _context.Categories.Add(category);
+                _context.Categories.Add(request.Data);
                 _context.SaveChanges();
 
                 ICategory_Get Category_Get = new Category_Get(_context);
-                return await Category_Get.Get();
+                return await Category_Get.Get(request.Token);
             }
             catch (Exception ex)
             {

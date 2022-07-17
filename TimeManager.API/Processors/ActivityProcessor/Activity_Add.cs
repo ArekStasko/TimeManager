@@ -7,21 +7,21 @@ using TimeManager.API.Data.Response;
 
 namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
-    public class Activity_Add : Processor, IActivity_Add
+    public class Activity_Add : Auth_Processor, IActivity_Add
     {
 
         public Activity_Add(DataContext context) : base(context) { }
 
-        public async Task<ActionResult<Response<List<vwActivityCategory>>>> Post(Activity activity)
+        public async Task<ActionResult<Response<List<vwActivityCategory>>>> Post(Request<Activity> request)
         {
             Response<List<vwActivityCategory>> response;
             try
             {
-                _context.Activities.Add(activity);
+                _context.Activities.Add(request.Data);
                 _context.SaveChanges();
 
                 IvwActivityCategory_GetAll vwActivityCategory_GetAll = new vwActivityCategory_GetAll(_context);
-                return await vwActivityCategory_GetAll.Get();
+                return await vwActivityCategory_GetAll.Get(request.Token);
             }
             catch (Exception ex)
             {

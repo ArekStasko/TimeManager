@@ -6,6 +6,6 @@ namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
     public interface IvwActivityCategory_GetByCategory
     {
-        public Task<ActionResult<Response<List<vwActivityCategory>>>> Get(int id);
+        public Task<ActionResult<Response<List<vwActivityCategory>>>> Get(Request<int> request);
     }
 }

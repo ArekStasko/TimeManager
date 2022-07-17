@@ -6,6 +6,6 @@ namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
     public interface IActivity_Delete
     {
-        public Task<ActionResult<Response<List<vwActivityCategory>>>> Delete(int Id);
+        public Task<ActionResult<Response<List<vwActivityCategory>>>> Delete(Request<int> request);
     }
 }

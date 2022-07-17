@@ -6,6 +6,6 @@ namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
     public interface IActivity_Add
     {
-        public Task<ActionResult<Response<List<vwActivityCategory>>>> Post(Activity activity);
+        public Task<ActionResult<Response<List<vwActivityCategory>>>> Post(Request<Activity> request);
     }
 }

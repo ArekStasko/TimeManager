@@ -8,6 +8,6 @@ namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
     public interface IActivity_Update
     {
-        public Task<ActionResult<Response<List<vwActivityCategory>>>> Update(Activity activity);
+        public Task<ActionResult<Response<List<vwActivityCategory>>>> Update(Request<Activity> request);
     }
 }

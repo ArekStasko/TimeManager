@@ -6,18 +6,18 @@ using TimeManager.API.Data.Response;
 
 namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
-    public class vwActivityCategory_GetByCategory : Processor, IvwActivityCategory_GetByCategory
+    public class vwActivityCategory_GetByCategory : Auth_Processor, IvwActivityCategory_GetByCategory
     {
         public vwActivityCategory_GetByCategory(DataContext context) : base(context) { }
 
-        public async Task<ActionResult<Response<List<vwActivityCategory>>>> Get(int id)
+        public async Task<ActionResult<Response<List<vwActivityCategory>>>> Get(Request<int> request)
         {
             Response<List<vwActivityCategory>> response;
 
             try
             {
                 var activities = await _context.vwActivityCategory.ToListAsync();
-                activities = activities.Where(activity => activity.CategoryId == id).ToList();
+                activities = activities.Where(activity => activity.CategoryId == request.Data).ToList();
 
                 response = new Response<List<vwActivityCategory>>(activities);
                 return response;

@@ -15,6 +15,7 @@ namespace TimeManager.API.Authentication
         {
             _context = context;
         }
+
         [HttpPost("register")]
         public async Task<ActionResult<Response<User>>> Register(UserDTO request)
         {
@@ -27,7 +28,7 @@ namespace TimeManager.API.Authentication
         public async Task<ActionResult<Response<string>>> Login(UserDTO request)
         {
             User_Login login = new User_Login(_context);
-            var User = login.Login(request);
+            var User = login.Login(request);            
             return Ok(User);
         }
 

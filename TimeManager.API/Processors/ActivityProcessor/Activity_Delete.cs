@@ -5,22 +5,22 @@ using TimeManager.API.Data.Response;
 
 namespace TimeManager.API.Processors.vwActivityCategoryProcessor
 {
-    public class vwActivityCategory_Delete : Processor, IActivity_Delete
+    public class vwActivityCategory_Delete : Auth_Processor, IActivity_Delete
     {
 
         public vwActivityCategory_Delete(DataContext context) : base(context) { }
 
-        public async Task<ActionResult<Response<List<vwActivityCategory>>>> Delete(int Id)
+        public async Task<ActionResult<Response<List<vwActivityCategory>>>> Delete(Request<int> request)
         {
             Response<List<vwActivityCategory>> response;
             try
             {
-                var activity = _context.Activities.Single(act => act.Id == Id);
+                var activity = _context.Activities.Single(act => act.Id == request.Data);
                 _context.Activities.Remove(activity);
                 _context.SaveChanges();
 
                 IvwActivityCategory_GetAll vwActivityCategory_GetAll = new vwActivityCategory_GetAll(_context);
-                return await vwActivityCategory_GetAll.Get();
+                return await vwActivityCategory_GetAll.Get(request.Token);
             }
             catch (Exception ex)
             {
