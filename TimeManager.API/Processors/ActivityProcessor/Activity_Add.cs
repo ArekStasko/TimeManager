@@ -17,7 +17,9 @@ namespace TimeManager.API.Processors.vwActivityCategoryProcessor
             Response<List<vwActivityCategory>> response;
             try
             {
-                _context.Activities.Add(request.Data);
+                Activity activity = request.Data;
+                activity.UserId = request.Token.userId;
+                _context.Activities.Add(activity);
                 _context.SaveChanges();
 
                 IvwActivityCategory_GetAll vwActivityCategory_GetAll = new vwActivityCategory_GetAll(_context);

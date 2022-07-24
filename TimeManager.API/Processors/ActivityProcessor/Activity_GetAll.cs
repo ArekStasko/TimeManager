@@ -14,7 +14,8 @@ namespace TimeManager.API.Processors.vwActivityCategoryProcessor
             Response<List<vwActivityCategory>> response;
             try
             {
-                var activities = await _context.vwActivityCategory.Where(a => a.UserId == token.userId).ToListAsync();
+                var activities = _context.vwActivityCategory.ToList();
+                activities = activities.Where(a => a.UserId == token.userId).ToList();
                 response = new Response<List<vwActivityCategory>>(activities);
                 return response;
             }
